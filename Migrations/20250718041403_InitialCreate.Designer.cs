@@ -11,8 +11,8 @@ using webproject.Data;
 namespace webproject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250717200721_IntialCreate1")]
-    partial class IntialCreate1
+    [Migration("20250718041403_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

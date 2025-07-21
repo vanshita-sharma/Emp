@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using webproject.DTOS;
 using webproject.Model;
 using webproject.Services;
-using webproject.DTOS;
 
 namespace webproject.Controllers
 {
@@ -47,8 +48,28 @@ namespace webproject.Controllers
             return CreatedAtAction(nameof(GetAllEmployees), new { id = result.EmployeeId }, result);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var employee = await _employeeService.GetByIdAsync(id);
+
+            if (employee == null)
+                return NotFound($"Employee with ID {id} not found.");
+
+            return Ok(employee);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmp(int id)
+        {
+
+            var deleted = await _employeeService.DeleteAsync(id);
+
+            if (!deleted)
+                return NotFound($"Employee with ID {id} not found or could not be deleted.");
+
+            return NoContent();
 
 
-
+        }
     }
 }

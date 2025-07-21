@@ -46,6 +46,43 @@ namespace webproject.Services
                 return null;
             }
         }
+        public async Task<EmployeeModel?> GetByIdAsync(int id)
+        {
+            try
+            {
+                var employee = await _context.Employees.FindAsync(id);
+                return employee;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching employee by ID: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            try
+            {
+                var employee = await _context.Employees.FindAsync(id);
+                if (employee == null)
+                {
+                    Console.WriteLine($"No employee found with ID: {id}");
+                    return false;
+                }
+
+                _context.Employees.Remove(employee);
+                await _context.SaveChangesAsync();
+                Console.WriteLine($"Employee with ID {id} deleted.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting employee: {ex.Message}");
+                return false;
+            }
+        }
+
 
 
 

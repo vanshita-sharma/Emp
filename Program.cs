@@ -1,9 +1,17 @@
-using webproject.Data;
+using Azure.Identity;
 using Microsoft.EntityFrameworkCore;
+using webproject.Data;
 using webproject.Services;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
+//Key vault 
+var keyVaultEndpoint = new Uri("https://my-keyvaultcap.vault.azure.net/");
+builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

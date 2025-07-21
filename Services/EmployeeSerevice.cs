@@ -61,10 +61,13 @@ namespace webproject.Services
         }
 
         public async Task<bool> DeleteAsync(string mail)
+
         {
+           
             try
             {
-                var employee = await _context.Employees.FindAsync(mail);
+                var employee = await _context.Employees
+                                     .FirstOrDefaultAsync(e => e.Mail == mail);
                 if (employee == null)
                 {
                     Console.WriteLine($"No employee found with ID: {mail}");

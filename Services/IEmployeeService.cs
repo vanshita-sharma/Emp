@@ -6,6 +6,9 @@ namespace webproject.Services
         Task<IEnumerable<EmployeeModel>> GetAllAsync();
        
         Task<EmployeeModel?> AddAsync(EmployeeModel employee);
-      
+        Task<EmployeeModel?> GetByIdAsync(int id);
+        Task<bool> DeleteAsync(int id);
+
+
     }
 }

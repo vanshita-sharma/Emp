@@ -49,17 +49,17 @@ namespace webproject.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(int mail)
         {
-            var employee = await _employeeService.GetByIdAsync(id);
+            var employee = await _employeeService.GetByIdAsync(mail);
 
             if (employee == null)
-                return NotFound($"Employee with ID {id} not found.");
+                return NotFound($"Employee with ID {mail} not found.");
 
             return Ok(employee);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmp(int id)
+        public async Task<IActionResult> DeleteEmp(string id)
         {
 
             var deleted = await _employeeService.DeleteAsync(id);

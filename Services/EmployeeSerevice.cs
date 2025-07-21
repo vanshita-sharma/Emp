@@ -60,20 +60,20 @@ namespace webproject.Services
             }
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(string mail)
         {
             try
             {
-                var employee = await _context.Employees.FindAsync(id);
+                var employee = await _context.Employees.FindAsync(mail);
                 if (employee == null)
                 {
-                    Console.WriteLine($"No employee found with ID: {id}");
+                    Console.WriteLine($"No employee found with ID: {mail}");
                     return false;
                 }
 
                 _context.Employees.Remove(employee);
                 await _context.SaveChangesAsync();
-                Console.WriteLine($"Employee with ID {id} deleted.");
+                Console.WriteLine($"Employee with ID {mail} deleted.");
                 return true;
             }
             catch (Exception ex)

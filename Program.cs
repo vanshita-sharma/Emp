@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 var keyVaultEndpoint = new Uri("https://mykeyvault1122.vault.azure.net/");
 builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
-// Add services to the container.
+//dvdhrv rhh
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
